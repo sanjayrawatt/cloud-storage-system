@@ -108,7 +108,8 @@ export const forgotPassword = async (req, res) => {
         },
     });
 
-    const resetURL = `http://localhost:5173/reset-password/${resetToken}`; // Use your frontend's URL
+    const resetURL =`${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
+    
     const emailMessage = `Forgot your password? Click the link to reset it: ${resetURL}\nThis link is valid for 10 minutes. If you didn't request this, please ignore this email.`;
 
     await transporter.sendMail({
