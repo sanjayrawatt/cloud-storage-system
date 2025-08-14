@@ -1,3 +1,5 @@
+// src/index.js (Updated & Secure)
+
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
@@ -11,7 +13,7 @@ const app = express();
 // --- Database Connection ---
 const connectDB = async () => {
   try {
-    // FIX #1: Using the MONGO_URI from your Render Environment Variables. This is secure.
+    // This is already secure and correct. No changes needed here.
     const mongoUri = process.env.MONGO_URI;
     if (!mongoUri) {
         console.error('FATAL ERROR: MONGO_URI is not defined in environment variables.');
@@ -30,10 +32,10 @@ connectDB();
 
 // --- Middlewares ---
 
-// FIX #2: Specific CORS configuration to allow your live frontend to connect.
+// FIX: Updated the allowedOrigins list with your new Netlify link.
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://gentle-kitsune-2ba555.netlify.app' // Your live Netlify frontend URL
+  'https://my-secure-cloud-storage.netlify.app' // This is your new, correct frontend URL
 ];
 
 app.use(cors({
