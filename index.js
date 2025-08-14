@@ -1,4 +1,6 @@
-// src/index.js (Updated & Secure)
+import 'dotenv/config';
+// ... the rest of your index.js file
+
 
 import express from 'express';
 import cors from 'cors';
@@ -30,6 +32,7 @@ const connectDB = async () => {
 connectDB();
 // -------------------------
 
+
 // --- Middlewares ---
 
 // FIX: Updated the allowedOrigins list with your new Netlify link.
@@ -39,16 +42,10 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
-  origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-      return callback(new Error(msg), false);
-    }
-    return callback(null, true);
-  },
+  origin: allowedOrigins, // Pass the array of allowed origins directly
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.use(express.json());

@@ -6,10 +6,10 @@ import File from '../models/File.js';
 
 // FIX: Initialize the S3 client securely using environment variables
 const s3Client = new S3Client({
-  region: process.env.AWS_REGION,
+  region: process.env.AWS_BUCKET_REGION,      // Use AWS_BUCKET_REGION
   credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    accessKeyId: process.env.AWS_ACCESS_KEY, // Use AWS_ACCESS_KEY
+    secretAccessKey: process.env.AWS_SECRET_KEY, // Use AWS_SECRET_KEY
   },
 });
 
